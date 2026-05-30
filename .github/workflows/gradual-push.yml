@@ -1,6 +1,5 @@
 name: Gradual Commit Pipeline
 
-# Runs every 15 minutes automatically. Also can be triggered manually.
 on:
   schedule:
     - cron: '*/15 * * * *'
@@ -28,15 +27,13 @@ jobs:
 
       - name: Determine and push next batch
         working-directory: main-repo
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -e
 
           git config user.name "LuckysHorizon"
           git config user.email "fruitylucky@gmail.com"
 
-          # Read current batch number (0-indexed)
+          # ── Read batch counter ──
           BATCH_FILE=".batch-tracker"
           if [ -f "$BATCH_FILE" ]; then
             CURRENT_BATCH=$(cat "$BATCH_FILE")
@@ -44,9 +41,7 @@ jobs:
             CURRENT_BATCH=0
           fi
 
-          echo "Current batch: $CURRENT_BATCH"
-
-          # Define all batches as: "commit_message|file1|file2|file3..."
+          # ── Batch definitions: "message|path1|path2|..." ──
           BATCHES=(
             "Initial project setup with README and config|README.md|.gitignore|notes"
             "Add HTML5 portfolio and registration form exercises|module-1/html5/portfolio|module-1/html5/registration-form"
@@ -69,73 +64,76 @@ jobs:
             "Add OOP exercises and collections framework demos|module-3/core-java/src/main/java/com/upskill/javafse/oop|module-3/core-java/src/main/java/com/upskill/javafse/collections"
             "Add exception handling, file I/O, and threading exercises|module-3/core-java/src/main/java/com/upskill/javafse/exceptions|module-3/core-java/src/main/java/com/upskill/javafse/fileio|module-3/core-java/src/main/java/com/upskill/javafse/threading"
             "Add JDBC database operations and Java 17-21 features|module-3/core-java/src/main/java/com/upskill/javafse/jdbc|module-3/core-java/src/main/java/com/upskill/javafse/modern|module-3/core-java/README.md"
-            "Add GitHub Pages index and deployment workflow|index.html|.github/workflows/deploy.yml|assets"
+            "Add GitHub Pages deployment and project index|index.html|.github/workflows/deploy.yml|assets"
           )
 
-          TOTAL_BATCHES=${#BATCHES[@]}
+          TOTAL=${#BATCHES[@]}
 
-          if [ "$CURRENT_BATCH" -ge "$TOTAL_BATCHES" ]; then
-            echo "All batches already pushed! ($TOTAL_BATCHES/$TOTAL_BATCHES)"
-            echo "You can now disable this workflow."
+          # ── Already done? ──
+          if [ "$CURRENT_BATCH" -ge "$TOTAL" ]; then
+            echo "All $TOTAL batches already pushed. Nothing to do."
             exit 0
           fi
 
-          # Parse current batch
-          BATCH_DATA="${BATCHES[$CURRENT_BATCH]}"
-          IFS='|' read -ra PARTS <<< "$BATCH_DATA"
-          COMMIT_MSG="${PARTS[0]}"
+          # ── Parse batch ──
+          IFS='|' read -ra PARTS <<< "${BATCHES[$CURRENT_BATCH]}"
+          MSG="${PARTS[0]}"
+          BATCH_NUM=$((CURRENT_BATCH + 1))
 
-          echo "========================================"
-          echo "Batch $((CURRENT_BATCH + 1))/$TOTAL_BATCHES"
-          echo "Message: $COMMIT_MSG"
-          echo "========================================"
+          echo "==========================================="
+          echo " Batch $BATCH_NUM / $TOTAL"
+          echo " $MSG"
+          echo "==========================================="
 
-          # Copy files from source to main
-          for ((j=1; j<${#PARTS[@]}; j++)); do
-            SRC_PATH="${PARTS[$j]}"
-            FULL_SRC="../source-repo/$SRC_PATH"
-
-            if [ -e "$FULL_SRC" ]; then
-              # Create parent directory if needed
-              PARENT_DIR=$(dirname "$SRC_PATH")
-              if [ "$PARENT_DIR" != "." ]; then
-                mkdir -p "$PARENT_DIR"
-              fi
-
-              # Copy file or directory
-              if [ -d "$FULL_SRC" ]; then
-                mkdir -p "$SRC_PATH"
-                cp -r "$FULL_SRC"/. "$SRC_PATH"/
+          # ── Copy files from source -> main ──
+          for ((i=1; i<${#PARTS[@]}; i++)); do
+            P="${PARTS[$i]}"
+            SRC="../source-repo/$P"
+            if [ -e "$SRC" ]; then
+              PARENT=$(dirname "$P")
+              [ "$PARENT" != "." ] && mkdir -p "$PARENT"
+              if [ -d "$SRC" ]; then
+                mkdir -p "$P"
+                cp -r "$SRC"/. "$P"/
               else
-                cp "$FULL_SRC" "$SRC_PATH"
+                cp "$SRC" "$P"
               fi
-              echo "  Copied: $SRC_PATH"
+              echo "  + $P"
             else
-              echo "  WARNING: $SRC_PATH not found in source"
+              echo "  ! MISSING: $P"
             fi
           done
 
-          # Stage, commit, push
+          # ── Track progress (hidden file, included silently) ──
+          NEXT=$((CURRENT_BATCH + 1))
+          echo "$NEXT" > "$BATCH_FILE"
+
+          # ── Commit and push ──
           git add -A
-          git commit -m "$COMMIT_MSG"
+          git commit -m "$MSG"
           git push origin main
 
-          echo "Pushed batch $((CURRENT_BATCH + 1))/$TOTAL_BATCHES successfully!"
+          echo ""
+          echo "Pushed $BATCH_NUM / $TOTAL"
 
-          # Update tracker
-          NEXT_BATCH=$((CURRENT_BATCH + 1))
-          echo "$NEXT_BATCH" > "$BATCH_FILE"
-          git add "$BATCH_FILE"
-          git commit -m "chore: update batch tracker to $NEXT_BATCH/$TOTAL_BATCHES" --allow-empty
-          git push origin main
+          # ── Final cleanup when all batches are done ──
+          if [ "$NEXT" -ge "$TOTAL" ]; then
+            echo ""
+            echo "All batches complete! Cleaning up..."
 
-          if [ "$NEXT_BATCH" -ge "$TOTAL_BATCHES" ]; then
+            # Remove automation artifacts from main
+            rm -f "$BATCH_FILE"
+            rm -f .github/workflows/gradual-push.yml
+            git add -A
+            git commit -m "Clean up automation files"
+            git push origin main
+
             echo ""
             echo "============================================="
-            echo "  ALL BATCHES COMPLETE! ($TOTAL_BATCHES/$TOTAL_BATCHES)"
-            echo "  You can now disable this workflow."
+            echo "  DONE! All $TOTAL batches pushed to main."
+            echo "  Automation files removed."
+            echo "  The workflow will no longer run."
             echo "============================================="
           else
-            echo ""
-            echo "Next batch ($((NEXT_BATCH + 1))/$TOTAL_BATCHES) will run in ~15 minutes."
+            echo "Next batch ($((NEXT + 1))/$TOTAL) in ~15 min."
           fi
