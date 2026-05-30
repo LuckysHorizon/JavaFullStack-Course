@@ -1,0 +1,139 @@
+name: Gradual Commit Pipeline
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  push-next-batch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source branch (all files)
+        uses: actions/checkout@v4
+        with:
+          ref: source
+          fetch-depth: 0
+          path: source-repo
+
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main-repo
+
+      - name: Determine and push next batch
+        working-directory: main-repo
+        run: |
+          set -e
+
+          git config user.name "LuckysHorizon"
+          git config user.email "fruitylucky@gmail.com"
+
+          # ── Read batch counter ──
+          BATCH_FILE=".batch-tracker"
+          if [ -f "$BATCH_FILE" ]; then
+            CURRENT_BATCH=$(cat "$BATCH_FILE")
+          else
+            CURRENT_BATCH=0
+          fi
+
+          # ── Batch definitions: "message|path1|path2|..." ──
+          BATCHES=(
+            "Initial project setup with README and config|README.md|.gitignore|notes"
+            "Add HTML5 portfolio and registration form exercises|module-1/html5/portfolio|module-1/html5/registration-form"
+            "Add semantic landing page and multi-section site|module-1/html5/semantic-landing|module-1/html5/multi-section-site"
+            "Add event handling and form validation exercises|module-1/html5/event-handling|module-1/html5/form-validation"
+            "Add web storage, geolocation, and dynamic table demos|module-1/html5/web-storage|module-1/html5/geolocation|module-1/html5/dynamic-table|module-1/html5/README.md"
+            "Add CSS3 dashboard and card layout exercises|module-1/css3/dashboard|module-1/css3/card-layouts"
+            "Add pricing section, animated buttons, and navbar|module-1/css3/pricing-section|module-1/css3/animated-buttons|module-1/css3/responsive-navbar"
+            "Add multi-column layout and form styling exercises|module-1/css3/multi-column|module-1/css3/form-styling|module-1/css3/README.md"
+            "Add todo app and weather app projects|module-1/javascript/todo-app|module-1/javascript/weather-app"
+            "Add form validator and calculator projects|module-1/javascript/form-validator|module-1/javascript/calculator"
+            "Add DOM exercises and array methods demos|module-1/javascript/dom-exercises|module-1/javascript/array-methods"
+            "Add async examples and CRUD localStorage project|module-1/javascript/async-examples|module-1/javascript/crud-localstorage|module-1/javascript/README.md"
+            "Add Bootstrap 5 exercises - portfolio, admin, cards|module-1/bootstrap5/portfolio|module-1/bootstrap5/admin-panel|module-1/bootstrap5/product-cards|module-1/bootstrap5/navbar-demo"
+            "Add Bootstrap carousel, modal form, and pricing table|module-1/bootstrap5/carousel|module-1/bootstrap5/modal-form|module-1/bootstrap5/pricing-table|module-1/bootstrap5/README.md"
+            "Add Webpack and Babel build tools configuration|module-1/build-tools"
+            "Add MySQL database schemas and sample data|module-2/mysql/employee-management|module-2/mysql/student-database"
+            "Add order management DB and MySQL README|module-2/mysql/order-management|module-2/mysql/README.md"
+            "Add Core Java project setup and basic programs|module-3/core-java/pom.xml|module-3/core-java/src/main/java/com/upskill/javafse/basics"
+            "Add OOP exercises and collections framework demos|module-3/core-java/src/main/java/com/upskill/javafse/oop|module-3/core-java/src/main/java/com/upskill/javafse/collections"
+            "Add exception handling, file I/O, and threading exercises|module-3/core-java/src/main/java/com/upskill/javafse/exceptions|module-3/core-java/src/main/java/com/upskill/javafse/fileio|module-3/core-java/src/main/java/com/upskill/javafse/threading"
+            "Add JDBC database operations and Java 17-21 features|module-3/core-java/src/main/java/com/upskill/javafse/jdbc|module-3/core-java/src/main/java/com/upskill/javafse/modern|module-3/core-java/README.md"
+            "Add GitHub Pages deployment and project index|index.html|.github/workflows/deploy.yml|assets"
+          )
+
+          TOTAL=${#BATCHES[@]}
+
+          # ── Already done? ──
+          if [ "$CURRENT_BATCH" -ge "$TOTAL" ]; then
+            echo "All $TOTAL batches already pushed. Nothing to do."
+            exit 0
+          fi
+
+          # ── Parse batch ──
+          IFS='|' read -ra PARTS <<< "${BATCHES[$CURRENT_BATCH]}"
+          MSG="${PARTS[0]}"
+          BATCH_NUM=$((CURRENT_BATCH + 1))
+
+          echo "==========================================="
+          echo " Batch $BATCH_NUM / $TOTAL"
+          echo " $MSG"
+          echo "==========================================="
+
+          # ── Copy files from source -> main ──
+          for ((i=1; i<${#PARTS[@]}; i++)); do
+            P="${PARTS[$i]}"
+            SRC="../source-repo/$P"
+            if [ -e "$SRC" ]; then
+              PARENT=$(dirname "$P")
+              [ "$PARENT" != "." ] && mkdir -p "$PARENT"
+              if [ -d "$SRC" ]; then
+                mkdir -p "$P"
+                cp -r "$SRC"/. "$P"/
+              else
+                cp "$SRC" "$P"
+              fi
+              echo "  + $P"
+            else
+              echo "  ! MISSING: $P"
+            fi
+          done
+
+          # ── Track progress (hidden file, included silently) ──
+          NEXT=$((CURRENT_BATCH + 1))
+          echo "$NEXT" > "$BATCH_FILE"
+
+          # ── Commit and push ──
+          git add -A
+          git commit -m "$MSG"
+          git push origin main
+
+          echo ""
+          echo "Pushed $BATCH_NUM / $TOTAL"
+
+          # ── Final cleanup when all batches are done ──
+          if [ "$NEXT" -ge "$TOTAL" ]; then
+            echo ""
+            echo "All batches complete! Cleaning up..."
+
+            # Remove automation artifacts from main
+            rm -f "$BATCH_FILE"
+            rm -f .github/workflows/gradual-push.yml
+            git add -A
+            git commit -m "Clean up automation files"
+            git push origin main
+
+            echo ""
+            echo "============================================="
+            echo "  DONE! All $TOTAL batches pushed to main."
+            echo "  Automation files removed."
+            echo "  The workflow will no longer run."
+            echo "============================================="
+          else
+            echo "Next batch ($((NEXT + 1))/$TOTAL) in ~15 min."
+          fi
