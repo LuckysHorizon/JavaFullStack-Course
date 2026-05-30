@@ -1,0 +1,141 @@
+name: Gradual Commit Pipeline
+
+# Runs every 15 minutes automatically. Also can be triggered manually.
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  push-next-batch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source branch (all files)
+        uses: actions/checkout@v4
+        with:
+          ref: source
+          fetch-depth: 0
+          path: source-repo
+
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main-repo
+
+      - name: Determine and push next batch
+        working-directory: main-repo
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+
+          git config user.name "LuckysHorizon"
+          git config user.email "fruitylucky@gmail.com"
+
+          # Read current batch number (0-indexed)
+          BATCH_FILE=".batch-tracker"
+          if [ -f "$BATCH_FILE" ]; then
+            CURRENT_BATCH=$(cat "$BATCH_FILE")
+          else
+            CURRENT_BATCH=0
+          fi
+
+          echo "Current batch: $CURRENT_BATCH"
+
+          # Define all batches as: "commit_message|file1|file2|file3..."
+          BATCHES=(
+            "Initial project setup with README and config|README.md|.gitignore|notes"
+            "Add HTML5 portfolio and registration form exercises|module-1/html5/portfolio|module-1/html5/registration-form"
+            "Add semantic landing page and multi-section site|module-1/html5/semantic-landing|module-1/html5/multi-section-site"
+            "Add event handling and form validation exercises|module-1/html5/event-handling|module-1/html5/form-validation"
+            "Add web storage, geolocation, and dynamic table demos|module-1/html5/web-storage|module-1/html5/geolocation|module-1/html5/dynamic-table|module-1/html5/README.md"
+            "Add CSS3 dashboard and card layout exercises|module-1/css3/dashboard|module-1/css3/card-layouts"
+            "Add pricing section, animated buttons, and navbar|module-1/css3/pricing-section|module-1/css3/animated-buttons|module-1/css3/responsive-navbar"
+            "Add multi-column layout and form styling exercises|module-1/css3/multi-column|module-1/css3/form-styling|module-1/css3/README.md"
+            "Add todo app and weather app projects|module-1/javascript/todo-app|module-1/javascript/weather-app"
+            "Add form validator and calculator projects|module-1/javascript/form-validator|module-1/javascript/calculator"
+            "Add DOM exercises and array methods demos|module-1/javascript/dom-exercises|module-1/javascript/array-methods"
+            "Add async examples and CRUD localStorage project|module-1/javascript/async-examples|module-1/javascript/crud-localstorage|module-1/javascript/README.md"
+            "Add Bootstrap 5 exercises - portfolio, admin, cards|module-1/bootstrap5/portfolio|module-1/bootstrap5/admin-panel|module-1/bootstrap5/product-cards|module-1/bootstrap5/navbar-demo"
+            "Add Bootstrap carousel, modal form, and pricing table|module-1/bootstrap5/carousel|module-1/bootstrap5/modal-form|module-1/bootstrap5/pricing-table|module-1/bootstrap5/README.md"
+            "Add Webpack and Babel build tools configuration|module-1/build-tools"
+            "Add MySQL database schemas and sample data|module-2/mysql/employee-management|module-2/mysql/student-database"
+            "Add order management DB and MySQL README|module-2/mysql/order-management|module-2/mysql/README.md"
+            "Add Core Java project setup and basic programs|module-3/core-java/pom.xml|module-3/core-java/src/main/java/com/upskill/javafse/basics"
+            "Add OOP exercises and collections framework demos|module-3/core-java/src/main/java/com/upskill/javafse/oop|module-3/core-java/src/main/java/com/upskill/javafse/collections"
+            "Add exception handling, file I/O, and threading exercises|module-3/core-java/src/main/java/com/upskill/javafse/exceptions|module-3/core-java/src/main/java/com/upskill/javafse/fileio|module-3/core-java/src/main/java/com/upskill/javafse/threading"
+            "Add JDBC database operations and Java 17-21 features|module-3/core-java/src/main/java/com/upskill/javafse/jdbc|module-3/core-java/src/main/java/com/upskill/javafse/modern|module-3/core-java/README.md"
+            "Add GitHub Pages index and deployment workflow|index.html|.github/workflows/deploy.yml|assets"
+          )
+
+          TOTAL_BATCHES=${#BATCHES[@]}
+
+          if [ "$CURRENT_BATCH" -ge "$TOTAL_BATCHES" ]; then
+            echo "All batches already pushed! ($TOTAL_BATCHES/$TOTAL_BATCHES)"
+            echo "You can now disable this workflow."
+            exit 0
+          fi
+
+          # Parse current batch
+          BATCH_DATA="${BATCHES[$CURRENT_BATCH]}"
+          IFS='|' read -ra PARTS <<< "$BATCH_DATA"
+          COMMIT_MSG="${PARTS[0]}"
+
+          echo "========================================"
+          echo "Batch $((CURRENT_BATCH + 1))/$TOTAL_BATCHES"
+          echo "Message: $COMMIT_MSG"
+          echo "========================================"
+
+          # Copy files from source to main
+          for ((j=1; j<${#PARTS[@]}; j++)); do
+            SRC_PATH="${PARTS[$j]}"
+            FULL_SRC="../source-repo/$SRC_PATH"
+
+            if [ -e "$FULL_SRC" ]; then
+              # Create parent directory if needed
+              PARENT_DIR=$(dirname "$SRC_PATH")
+              if [ "$PARENT_DIR" != "." ]; then
+                mkdir -p "$PARENT_DIR"
+              fi
+
+              # Copy file or directory
+              if [ -d "$FULL_SRC" ]; then
+                mkdir -p "$SRC_PATH"
+                cp -r "$FULL_SRC"/. "$SRC_PATH"/
+              else
+                cp "$FULL_SRC" "$SRC_PATH"
+              fi
+              echo "  Copied: $SRC_PATH"
+            else
+              echo "  WARNING: $SRC_PATH not found in source"
+            fi
+          done
+
+          # Stage, commit, push
+          git add -A
+          git commit -m "$COMMIT_MSG"
+          git push origin main
+
+          echo "Pushed batch $((CURRENT_BATCH + 1))/$TOTAL_BATCHES successfully!"
+
+          # Update tracker
+          NEXT_BATCH=$((CURRENT_BATCH + 1))
+          echo "$NEXT_BATCH" > "$BATCH_FILE"
+          git add "$BATCH_FILE"
+          git commit -m "chore: update batch tracker to $NEXT_BATCH/$TOTAL_BATCHES" --allow-empty
+          git push origin main
+
+          if [ "$NEXT_BATCH" -ge "$TOTAL_BATCHES" ]; then
+            echo ""
+            echo "============================================="
+            echo "  ALL BATCHES COMPLETE! ($TOTAL_BATCHES/$TOTAL_BATCHES)"
+            echo "  You can now disable this workflow."
+            echo "============================================="
+          else
+            echo ""
+            echo "Next batch ($((NEXT_BATCH + 1))/$TOTAL_BATCHES) will run in ~15 minutes."
+          fi

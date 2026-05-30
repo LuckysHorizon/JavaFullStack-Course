@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java FSE - Digital Nurture 5.0</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0f0f1a;
+            color: #e4e6eb;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid #2a2d35;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header p {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .module {
+            margin-bottom: 2.5rem;
+        }
+
+        .module h2 {
+            font-size: 1.15rem;
+            color: #a29bfe;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            display: block;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 1.2rem;
+            text-decoration: none;
+            color: #e4e6eb;
+            transition: transform 0.2s, border-color 0.2s, background 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(108, 92, 231, 0.4);
+            background: rgba(108, 92, 231, 0.08);
+        }
+
+        .card h3 {
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .card p {
+            font-size: 0.82rem;
+            color: #888;
+            line-height: 1.4;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.68rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
+            margin-top: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            font-weight: 600;
+        }
+
+        .tag-html { background: #2d1f3d; color: #e17055; }
+        .tag-css { background: #1f2d3d; color: #74b9ff; }
+        .tag-js { background: #2d2d1f; color: #ffeaa7; }
+        .tag-bs { background: #1f3d2d; color: #55efc4; }
+
+        .non-deployable {
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-top: 1px solid #2a2d35;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid #2a2d35;
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 500px) {
+            body { padding: 1rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cognizant Digital Nurture 5.0</h1>
+            <p>Java Full Stack Engineering -- Frontend Exercises</p>
+        </header>
+
+        <section class="module">
+            <h2>HTML5 Exercises</h2>
+            <div class="card-grid">
+                <a href="module-1/html5/portfolio/index.html" class="card">
+                    <h3>Portfolio Page</h3>
+                    <p>Semantic HTML tags, heading hierarchy, accessibility</p>
+                    <span class="tag tag-html">HTML5</span>
+                </a>
+                <a href="module-1/html5/registration-form/index.html" class="card">
+                    <h3>Registration Form</h3>
+                    <p>Form inputs, fieldsets, validation attributes</p>
+                    <span class="tag tag-html">HTML5</span>
+                </a>
+                <a href="module-1/html5/semantic-landing/index.html" class="card">
+                    <h3>Semantic Landing</h3>
+                    <p>Article, figure, responsive layout</p>
+                    <span class="tag tag-html">HTML5</span>
+                </a>
+                <a href="module-1/html5/multi-section-site/index.html" class="card">
+                    <h3>Multi-Section Site</h3>
+                    <p>Smooth scroll navigation, active link tracking</p>
+                    <span class="tag tag-html">HTML5</span>
+                </a>
+                <a href="module-1/html5/event-handling/index.html" class="card">
+                    <h3>Event Handling</h3>
+                    <p>Click, hover, keypress, event delegation</p>
+                    <span class="tag tag-html">HTML5</span>
+                </a>
+                <a href="module-1/html5/form-validation/index.html" class="card">
+                    <h3>Form Validation</h3>
+                    <p>Real-time validation, password strength</p>
+                    <span class="tag tag-html">HTML5</span>
+                </a>
+                <a href="module-1/html5/web-storage/index.html" class="card">
+                    <h3>Web Storage</h3>
+                    <p>localStorage vs sessionStorage demo</p>
+                    <span class="tag tag-html">HTML5</span>
+                </a>
+                <a href="module-1/html5/geolocation/index.html" class="card">
+                    <h3>Geolocation API</h3>
+                    <p>Current position, Haversine distance</p>
+                    <span class="tag tag-html">HTML5</span>
+                </a>
+                <a href="module-1/html5/dynamic-table/index.html" class="card">
+                    <h3>Dynamic Table</h3>
+                    <p>CRUD table, sorting, search filter</p>
+                    <span class="tag tag-html">HTML5</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="module">
+            <h2>CSS3 Exercises</h2>
+            <div class="card-grid">
+                <a href="module-1/css3/dashboard/index.html" class="card">
+                    <h3>Dashboard UI</h3>
+                    <p>CSS Grid layout, dark theme, responsive sidebar</p>
+                    <span class="tag tag-css">CSS3</span>
+                </a>
+                <a href="module-1/css3/card-layouts/index.html" class="card">
+                    <h3>Card Layouts</h3>
+                    <p>Image, profile, product cards with hover effects</p>
+                    <span class="tag tag-css">CSS3</span>
+                </a>
+                <a href="module-1/css3/pricing-section/index.html" class="card">
+                    <h3>Pricing Section</h3>
+                    <p>Glassmorphism cards, 3-tier pricing</p>
+                    <span class="tag tag-css">CSS3</span>
+                </a>
+                <a href="module-1/css3/animated-buttons/index.html" class="card">
+                    <h3>Animated Buttons</h3>
+                    <p>Gradient, glow, ripple, loading animations</p>
+                    <span class="tag tag-css">CSS3</span>
+                </a>
+                <a href="module-1/css3/responsive-navbar/index.html" class="card">
+                    <h3>Responsive Navbar</h3>
+                    <p>CSS-only hamburger, dropdown menus</p>
+                    <span class="tag tag-css">CSS3</span>
+                </a>
+                <a href="module-1/css3/multi-column/index.html" class="card">
+                    <h3>Multi-Column Layout</h3>
+                    <p>CSS columns, drop cap, pull quotes</p>
+                    <span class="tag tag-css">CSS3</span>
+                </a>
+                <a href="module-1/css3/form-styling/index.html" class="card">
+                    <h3>Form Styling</h3>
+                    <p>Custom checkboxes, radios, toggles, floating labels</p>
+                    <span class="tag tag-css">CSS3</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="module">
+            <h2>JavaScript Projects</h2>
+            <div class="card-grid">
+                <a href="module-1/javascript/todo-app/index.html" class="card">
+                    <h3>Todo App</h3>
+                    <p>LocalStorage, filtering, class pattern</p>
+                    <span class="tag tag-js">JavaScript</span>
+                </a>
+                <a href="module-1/javascript/weather-app/index.html" class="card">
+                    <h3>Weather App</h3>
+                    <p>Fetch API, async/await, error handling</p>
+                    <span class="tag tag-js">JavaScript</span>
+                </a>
+                <a href="module-1/javascript/form-validator/index.html" class="card">
+                    <h3>Form Validator</h3>
+                    <p>Validation engine, password strength</p>
+                    <span class="tag tag-js">JavaScript</span>
+                </a>
+                <a href="module-1/javascript/calculator/index.html" class="card">
+                    <h3>Calculator</h3>
+                    <p>Keyboard support, expression parsing</p>
+                    <span class="tag tag-js">JavaScript</span>
+                </a>
+                <a href="module-1/javascript/dom-exercises/index.html" class="card">
+                    <h3>DOM Exercises</h3>
+                    <p>Element creation, style manipulation, traversal</p>
+                    <span class="tag tag-js">JavaScript</span>
+                </a>
+                <a href="module-1/javascript/array-methods/index.html" class="card">
+                    <h3>Array Methods</h3>
+                    <p>map, filter, reduce, find, sort, chaining</p>
+                    <span class="tag tag-js">JavaScript</span>
+                </a>
+                <a href="module-1/javascript/async-examples/index.html" class="card">
+                    <h3>Async Examples</h3>
+                    <p>Promises, Promise.all, Promise.race</p>
+                    <span class="tag tag-js">JavaScript</span>
+                </a>
+                <a href="module-1/javascript/crud-localstorage/index.html" class="card">
+                    <h3>CRUD LocalStorage</h3>
+                    <p>Contact manager with full CRUD + search</p>
+                    <span class="tag tag-js">JavaScript</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="module">
+            <h2>Bootstrap 5 Projects</h2>
+            <div class="card-grid">
+                <a href="module-1/bootstrap5/portfolio/index.html" class="card">
+                    <h3>Portfolio</h3>
+                    <p>Responsive portfolio with Bootstrap grid</p>
+                    <span class="tag tag-bs">Bootstrap</span>
+                </a>
+                <a href="module-1/bootstrap5/admin-panel/index.html" class="card">
+                    <h3>Admin Panel</h3>
+                    <p>Dashboard with tables, badges, stats</p>
+                    <span class="tag tag-bs">Bootstrap</span>
+                </a>
+                <a href="module-1/bootstrap5/product-cards/index.html" class="card">
+                    <h3>Product Cards</h3>
+                    <p>E-commerce card grid with badges</p>
+                    <span class="tag tag-bs">Bootstrap</span>
+                </a>
+                <a href="module-1/bootstrap5/navbar-demo/index.html" class="card">
+                    <h3>Navbar Demo</h3>
+                    <p>Responsive navbar with dropdown</p>
+                    <span class="tag tag-bs">Bootstrap</span>
+                </a>
+                <a href="module-1/bootstrap5/carousel/index.html" class="card">
+                    <h3>Carousel</h3>
+                    <p>Image slider with captions</p>
+                    <span class="tag tag-bs">Bootstrap</span>
+                </a>
+                <a href="module-1/bootstrap5/modal-form/index.html" class="card">
+                    <h3>Modal Form</h3>
+                    <p>Bootstrap modals with form validation</p>
+                    <span class="tag tag-bs">Bootstrap</span>
+                </a>
+                <a href="module-1/bootstrap5/pricing-table/index.html" class="card">
+                    <h3>Pricing Table</h3>
+                    <p>3-tier pricing with Bootstrap cards</p>
+                    <span class="tag tag-bs">Bootstrap</span>
+                </a>
+            </div>
+        </section>
+
+        <div class="non-deployable">
+            <p>Module 2 (MySQL) and Module 3 (Core Java) are backend projects and are not deployable as web pages.</p>
+            <p>View the source code in the repository for SQL scripts and Java source files.</p>
+        </div>
+
+        <footer>
+            <p>Cognizant Digital Nurture 5.0 -- Java Full Stack Engineering Assessment</p>
+        </footer>
+    </div>
+</body>
+</html>

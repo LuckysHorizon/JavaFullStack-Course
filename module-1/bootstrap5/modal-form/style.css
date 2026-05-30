@@ -1,0 +1,9 @@
+/* Subtle background pattern for the page */
+body {
+    background-color: #f0f4f8;
+}
+
+/* Modal open animation polish */
+.modal-content {
+    border-radius: 0.75rem;
+}

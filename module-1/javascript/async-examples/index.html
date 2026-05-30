@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Async/Await Examples</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1> Async/Await Examples</h1>
+
+    <section class="section">
+      <h2>1. Promise Creation & Resolution</h2>
+      <p>Create a manual Promise with setTimeout that resolves after a delay.</p>
+      <button class="run-btn" id="runPromise">Run Promise (2s delay)</button>
+      <div class="output" id="promiseOutput"></div>
+    </section>
+
+    <section class="section">
+      <h2>2. Sequential API Calls</h2>
+      <p>Fetch a user, then fetch their posts  one after the other.</p>
+      <button class="run-btn" id="runSequential">Fetch User  Posts</button>
+      <div class="output" id="sequentialOutput"></div>
+    </section>
+
+    <section class="section">
+      <h2>3. Parallel API Calls</h2>
+      <p>Use Promise.all to fetch multiple resources at the same time.</p>
+      <button class="run-btn" id="runParallel">Fetch All in Parallel</button>
+      <div class="output" id="parallelOutput"></div>
+    </section>
+
+    <section class="section">
+      <h2>4. Error Handling with try/catch</h2>
+      <p>Demonstrate proper error handling for async operations.</p>
+      <button class="run-btn" id="runError">Trigger Error</button>
+      <button class="run-btn secondary" id="runSuccess">Trigger Success</button>
+      <div class="output" id="errorOutput"></div>
+    </section>
+
+    <section class="section">
+      <h2>5. Promise.race & Promise.allSettled</h2>
+      <p>Compare behaviors of race (first to finish) and allSettled (wait for all).</p>
+      <button class="run-btn" id="runRace">Promise.race</button>
+      <button class="run-btn secondary" id="runAllSettled">Promise.allSettled</button>
+      <div class="output" id="raceOutput"></div>
+    </section>
+  </div>
+  <script src="async.js"></script>
+</body>
+</html>

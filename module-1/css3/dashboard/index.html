@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard UI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="sidebar-brand">DataHub</div>
+            <nav>
+                <a href="#" class="nav-link active">Overview</a>
+                <a href="#" class="nav-link">Analytics</a>
+                <a href="#" class="nav-link">Users</a>
+                <a href="#" class="nav-link">Products</a>
+                <a href="#" class="nav-link">Settings</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <h1>Dashboard</h1>
+                <div class="user-info">
+                    <span>Welcome, Priya</span>
+                    <div class="avatar">P</div>
+                </div>
+            </header>
+
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Revenue</span>
+                    <span class="stat-value">$452,800</span>
+                    <span class="stat-change positive">+ 12.5%</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Users</span>
+                    <span class="stat-value">2,847</span>
+                    <span class="stat-change positive">+ 8.2%</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Orders</span>
+                    <span class="stat-value">1,234</span>
+                    <span class="stat-change negative">- 3.1%</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Growth</span>
+                    <span class="stat-value">18.7%</span>
+                    <span class="stat-change positive">+ 2.4%</span>
+                </div>
+            </section>
+
+            <section class="content-grid">
+                <div class="chart-placeholder">
+                    <h3>Monthly Revenue</h3>
+                    <div class="bar-chart">
+                        <div class="bar" style="--h: 60%"><span>Jan</span></div>
+                        <div class="bar" style="--h: 75%"><span>Feb</span></div>
+                        <div class="bar" style="--h: 50%"><span>Mar</span></div>
+                        <div class="bar" style="--h: 90%"><span>Apr</span></div>
+                        <div class="bar" style="--h: 65%"><span>May</span></div>
+                        <div class="bar" style="--h: 85%"><span>Jun</span></div>
+                    </div>
+                </div>
+
+                <div class="activity-panel">
+                    <h3>Recent Activity</h3>
+                    <ul class="activity-list">
+                        <li><span class="dot green"></span> New user registered <time>2 min ago</time></li>
+                        <li><span class="dot blue"></span> Order #1089 shipped <time>15 min ago</time></li>
+                        <li><span class="dot orange"></span> Payment received$12,500 <time>1 hr ago</time></li>
+                        <li><span class="dot green"></span> Product "Widget Pro" added <time>3 hr ago</time></li>
+                        <li><span class="dot red"></span> Server alert resolved <time>5 hr ago</time></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

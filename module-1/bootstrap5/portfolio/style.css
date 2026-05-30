@@ -1,0 +1,25 @@
+/* Hero section gradient */
+.hero-section {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    padding-top: 70px;
+}
+
+/* Smooth scrolling and offset for fixed navbar */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+}
+
+/* Card hover lift */
+.card {
+    transition: transform 0.25s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Footer social link hover */
+footer a:hover {
+    opacity: 0.7;
+}

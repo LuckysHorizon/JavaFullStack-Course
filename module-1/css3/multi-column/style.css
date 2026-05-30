@@ -1,0 +1,117 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #faf9f6;
+    color: #333;
+    padding: 2rem;
+    line-height: 1.7;
+}
+
+.container { max-width: 960px; margin: 0 auto; }
+
+h1 {
+    text-align: center;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    margin-bottom: 2.5rem;
+    color: #1a1a2e;
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 1.1rem;
+    color: #6c5ce7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.2rem;
+}
+
+section { margin-bottom: 3rem; }
+
+/* CSS columns layout */
+.columns-article {
+    columns: 3;
+    column-gap: 2rem;
+    column-rule: 1px solid #e0dcd5;
+}
+
+.columns-article p {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    text-align: justify;
+    hyphens: auto;
+}
+
+.dropcap::first-letter {
+    float: left;
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 0.85;
+    margin: 0.05rem 0.5rem 0 0;
+    color: #6c5ce7;
+}
+
+.pull-quote {
+    column-span: all;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: #6c5ce7;
+    padding: 1.5rem 2rem;
+    margin: 1rem 0;
+    border-top: 2px solid #e0dcd5;
+    border-bottom: 2px solid #e0dcd5;
+}
+
+/* CSS Grid alternative layout */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+}
+
+.grid-item {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.grid-item h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #2d3436;
+}
+
+.grid-item p {
+    font-size: 0.88rem;
+    color: #636e72;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.grid-item code {
+    background: #f1f3f5;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    font-size: 0.82rem;
+}
+
+.grid-item.wide { grid-column: span 2; }
+.grid-item.tall { grid-row: span 2; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .columns-article { columns: 2; }
+    .grid-layout { grid-template-columns: repeat(2, 1fr); }
+    .grid-item.wide { grid-column: span 1; }
+}
+
+@media (max-width: 480px) {
+    body { padding: 1rem; }
+    .columns-article { columns: 1; }
+    .grid-layout { grid-template-columns: 1fr; }
+    .grid-item.tall { grid-row: span 1; }
+}

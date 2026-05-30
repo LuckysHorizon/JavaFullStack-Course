@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">DevStack</a>
+
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </label>
+
+            <ul class="nav-menu">
+                <li><a href="#" class="active">Home</a></li>
+                <li class="has-dropdown">
+                    <a href="#">Services </a>
+                    <ul class="dropdown">
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Mobile Apps</a></li>
+                        <li><a href="#">Cloud Solutions</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <h1>Pure CSS Responsive Navigation</h1>
+        <p>This navbar uses no JavaScript at all. The hamburger menu is powered by a hidden checkbox and the CSS sibling selector (<code>~</code>). Try resizing the window to see the mobile version.</p>
+        <p>The dropdown submenu appears on hover (desktop) and is always visible on mobile when expanded.</p>
+    </main>
+</body>
+</html>

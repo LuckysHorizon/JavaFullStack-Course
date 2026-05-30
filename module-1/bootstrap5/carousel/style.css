@@ -1,0 +1,40 @@
+/* Carousel slide backgrounds */
+.carousel-slide {
+    min-height: 75vh;
+    position: relative;
+}
+
+.slide-1 { background: linear-gradient(135deg, #2c3e50, #3498db); }
+.slide-2 { background: linear-gradient(135deg, #0f4c75, #3282b8); }
+.slide-3 { background: linear-gradient(135deg, #1b4332, #40916c); }
+.slide-4 { background: linear-gradient(135deg, #2d1b69, #7b2ff7, #00d2ff); }
+
+/* Dark overlay for text readability */
+.carousel-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+/* Custom caption positioning (centered) */
+.carousel-caption-custom {
+    position: relative;
+    z-index: 2;
+    padding: 0 1rem;
+}
+
+/* Thumbnail strip cards */
+.thumb-card {
+    cursor: pointer;
+    opacity: 0.75;
+    transition: opacity 0.25s, transform 0.25s;
+}
+.thumb-card:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.slide-1-thumb { background: linear-gradient(135deg, #2c3e50, #3498db); }
+.slide-2-thumb { background: linear-gradient(135deg, #0f4c75, #3282b8); }
+.slide-3-thumb { background: linear-gradient(135deg, #1b4332, #40916c); }
+.slide-4-thumb { background: linear-gradient(135deg, #2d1b69, #7b2ff7); }
