@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling Demos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1> Event Handling Demos</h1>
+        <p>Interactive demonstrations of various JavaScript DOM events.</p>
+    </header>
+
+    <main class="demos">
+        <!-- 1. Click Counter -->
+        <section class="demo-card">
+            <h2>1. Click Counter</h2>
+            <p>Count: <span id="clickCount">0</span></p>
+            <button id="clickBtn" class="btn">Click Me!</button>
+            <button id="resetBtn" class="btn btn-outline">Reset</button>
+        </section>
+
+        <!-- 2. Mouseover / Mouseout -->
+        <section class="demo-card">
+            <h2>2. Mouse Hover Effect</h2>
+            <div id="hoverBox" class="hover-box">Hover over me!</div>
+        </section>
+
+        <!-- 3. Keypress Detector -->
+        <section class="demo-card">
+            <h2>3. Keypress Detector</h2>
+            <p>Press any key while the input is focused:</p>
+            <input type="text" id="keypressInput" placeholder="Type here..." class="input-field">
+            <div id="keyInfo" class="key-info">Waiting for keypress...</div>
+        </section>
+
+        <!-- 4. Focus / Blur -->
+        <section class="demo-card">
+            <h2>4. Focus &amp; Blur Styling</h2>
+            <input type="text" id="focusInput" placeholder="Click to focus, click away to blur" class="input-field">
+            <p id="focusStatus" class="status-msg">Input is idle</p>
+        </section>
+
+        <!-- 5. Form Submit with preventDefault -->
+        <section class="demo-card">
+            <h2>5. Form Submit (preventDefault)</h2>
+            <form id="demoForm">
+                <input type="text" name="username" placeholder="Enter username" required class="input-field">
+                <button type="submit" class="btn">Submit</button>
+            </form>
+            <p id="formMsg" class="status-msg"></p>
+        </section>
+
+        <!-- 6. Event Delegation -->
+        <section class="demo-card">
+            <h2>6. Event Delegation</h2>
+            <p>Click any item. New items are handled by the same parent listener.</p>
+            <ul id="itemList">
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+            </ul>
+            <button id="addItemBtn" class="btn">+ Add Item</button>
+            <p id="delegationMsg" class="status-msg"></p>
+        </section>
+
+        <!-- 7. Event Object Properties -->
+        <section class="demo-card">
+            <h2>7. Event Object Inspector</h2>
+            <button id="inspectBtn" class="btn">Click to Inspect Event</button>
+            <div id="eventDetails" class="event-details">Click the button to see event details...</div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
