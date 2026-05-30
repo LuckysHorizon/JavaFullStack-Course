@@ -1,0 +1,136 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.pricing-section { text-align: center; max-width: 1000px; width: 100%; }
+
+h1 {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    color: #a29bfe;
+    margin-bottom: 2.5rem;
+    font-size: 1.05rem;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.plan-card {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2.2rem 1.8rem;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.plan-card:hover { transform: translateY(-5px); }
+
+.plan-card.featured {
+    background: rgba(108, 92, 231, 0.18);
+    border-color: rgba(108, 92, 231, 0.5);
+    padding: 2.8rem 1.8rem;
+    transform: scale(1.05);
+}
+
+.plan-card.featured:hover { transform: scale(1.08); }
+
+.badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    color: #fff;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.plan-card h2 {
+    color: #e4e6eb;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.price span {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #a29bfe;
+}
+
+.features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 1.8rem;
+}
+
+.features li {
+    padding: 0.45rem 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.features li.included { color: #dfe6e9; }
+.features li.excluded { color: #636e72; }
+
+.btn-plan {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid rgba(108, 92, 231, 0.5);
+    background: transparent;
+    color: #a29bfe;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+
+.btn-plan:hover {
+    background: #6c5ce7;
+    color: #fff;
+}
+
+.btn-featured {
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    color: #fff;
+    border-color: transparent;
+}
+
+.btn-featured:hover {
+    background: linear-gradient(135deg, #5a4bd1, #8e83e0);
+}
+
+@media (max-width: 768px) {
+    .pricing-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+    .plan-card.featured { transform: scale(1); }
+    .plan-card.featured:hover { transform: translateY(-5px); }
+}
