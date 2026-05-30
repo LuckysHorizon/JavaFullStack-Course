@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Column Layouts</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Multi-Column Layouts</h1>
+
+        <section class="magazine-section">
+            <h2>CSS Columns  Magazine Style</h2>
+            <article class="columns-article">
+                <p class="dropcap">Modern web development has evolved dramatically over the past decade. What once required complex table-based layouts and browser-specific hacks can now be achieved with a few lines of CSS. The introduction of Flexbox and Grid has fundamentally changed how we approach page composition.</p>
+                <p>Responsive design is no longer optional  it's the baseline expectation. Users access websites from phones, tablets, laptops, and even smart TVs. A well-crafted layout adapts gracefully across all these screen sizes without compromising readability or functionality.</p>
+                <blockquote class="pull-quote">"Good design is invisible. It's only when something is poorly designed that we notice it."</blockquote>
+                <p>Typography plays a crucial role in establishing visual hierarchy. Line height, letter spacing, and font size all contribute to how comfortable text is to read. The golden ratio for line height is generally between 1.5 and 1.7 for body text  tight enough to feel connected but loose enough for comfortable scanning.</p>
+                <p>Color theory matters too. A cohesive palette creates consistency, while strategic use of accent colors draws attention to calls to action. Dark modes have surged in popularity, reducing eye strain and giving interfaces a premium feel. The key is maintaining sufficient contrast ratios for accessibility.</p>
+                <p>Performance optimization shouldn't be an afterthought. Every millisecond of load time impacts user engagement. Lazy loading images, minimizing CSS, and using modern formats like WebP can make a measurable difference in real-world usage.</p>
+            </article>
+        </section>
+
+        <section class="grid-section">
+            <h2>CSS Grid  Alternative Layout</h2>
+            <div class="grid-layout">
+                <div class="grid-item wide">
+                    <h3>Feature Article</h3>
+                    <p>Grid layouts allow for complex two-dimensional positioning that was previously impossible without JavaScript or absolute positioning.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Quick Tips</h3>
+                    <p>Use <code>minmax()</code> for flexible grid tracks that respect both minimum and maximum constraints.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Best Practices</h3>
+                    <p>Name your grid areas for better readability. Future maintainers will thank you.</p>
+                </div>
+                <div class="grid-item tall">
+                    <h3>Deep Dive</h3>
+                    <p>The <code>fr</code> unit distributes remaining space proportionally. Combined with fixed columns, it creates flexible yet predictable layouts.</p>
+                    <p>Grid and Flexbox complement each other  Grid for page-level layout, Flexbox for component-level alignment.</p>
+                </div>
+                <div class="grid-item">
+                    <h3>Resources</h3>
+                    <p>CSS Tricks, MDN Web Docs, and Kevin Powell's YouTube channel are excellent learning resources.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

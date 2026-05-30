@@ -1,0 +1,278 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #eef2f7;
+    padding: 2rem;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 480px;
+    width: 100%;
+}
+
+h1 { color: #1a1a2e; margin-bottom: 0.3rem; text-align: center; }
+.subtitle { color: #888; text-align: center; margin-bottom: 2rem; font-size: 0.9rem; }
+
+.styled-form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+}
+
+/* Floating label text inputs */
+.form-field {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field input[type="password"] {
+    width: 100%;
+    padding: 0.9rem 0.8rem 0.5rem;
+    border: 2px solid #dfe6e9;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.form-field label {
+    position: absolute;
+    left: 0.8rem;
+    top: 0.75rem;
+    color: #b2bec3;
+    font-size: 0.92rem;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+/* float label up when input is focused or has content */
+.form-field input:focus + label,
+.form-field input:not(:placeholder-shown) + label {
+    top: 0.2rem;
+    font-size: 0.7rem;
+    color: #6c5ce7;
+}
+
+.form-field input:focus {
+    border-color: #6c5ce7;
+}
+
+/* validation states */
+.form-field input:valid:not(:placeholder-shown) {
+    border-color: #00b894;
+}
+
+.form-field input:invalid:not(:placeholder-shown):not(:focus) {
+    border-color: #e17055;
+}
+
+/* Custom select */
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper select {
+    width: 100%;
+    padding: 0.75rem 0.8rem;
+    border: 2px solid #dfe6e9;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+}
+
+.select-wrapper select:focus { border-color: #6c5ce7; }
+
+.select-arrow {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #b2bec3;
+    font-size: 1rem;
+}
+
+/* Fieldsets */
+fieldset {
+    border: none;
+    margin-bottom: 1.5rem;
+}
+
+legend {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: #555;
+    margin-bottom: 0.6rem;
+}
+
+/* Custom checkboxes */
+.custom-check {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.custom-check input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s;
+    position: relative;
+}
+
+.custom-check input:checked + .checkmark {
+    background: #6c5ce7;
+    border-color: #6c5ce7;
+}
+
+.custom-check input:checked + .checkmark::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 6px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Custom radio buttons */
+.custom-radio {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.custom-radio input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.radio-dot {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: border-color 0.2s;
+    position: relative;
+}
+
+.custom-radio input:checked + .radio-dot {
+    border-color: #6c5ce7;
+}
+
+.custom-radio input:checked + .radio-dot::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 10px; height: 10px;
+    background: #6c5ce7;
+    border-radius: 50%;
+}
+
+/* Toggle switch */
+.toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 48px;
+    height: 26px;
+    cursor: pointer;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #ccc;
+    border-radius: 26px;
+    transition: background 0.3s;
+}
+
+.toggle-slider::after {
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    top: 3px; left: 3px;
+    transition: transform 0.3s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background: #6c5ce7;
+}
+
+.toggle-switch input:checked + .toggle-slider::after {
+    transform: translateX(22px);
+}
+
+/* Submit button */
+.submit-btn {
+    width: 100%;
+    padding: 0.8rem;
+    background: #6c5ce7;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.submit-btn:hover {
+    background: #5a4bd1;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 520px) {
+    body { padding: 1rem; }
+    .styled-form { padding: 1.3rem; }
+}

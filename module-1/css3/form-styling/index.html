@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Form Styling</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>CSS-Only Styled Form</h1>
+        <p class="subtitle">Custom form controls without JavaScript.</p>
+
+        <form class="styled-form" novalidate>
+            <div class="form-field">
+                <input type="text" id="name" placeholder=" " required>
+                <label for="name">Full Name</label>
+            </div>
+
+            <div class="form-field">
+                <input type="email" id="email" placeholder=" " required>
+                <label for="email">Email Address</label>
+            </div>
+
+            <div class="form-field">
+                <input type="password" id="password" placeholder=" " required minlength="8">
+                <label for="password">Password</label>
+            </div>
+
+            <div class="form-field select-wrapper">
+                <select id="role" required>
+                    <option value="" disabled selected>Choose a role</option>
+                    <option value="student">Student</option>
+                    <option value="developer">Developer</option>
+                    <option value="designer">Designer</option>
+                    <option value="manager">Manager</option>
+                </select>
+                <span class="select-arrow"></span>
+            </div>
+
+            <fieldset class="checkbox-group">
+                <legend>Interests</legend>
+                <label class="custom-check">
+                    <input type="checkbox" name="interests" value="frontend">
+                    <span class="checkmark"></span>
+                    Frontend Development
+                </label>
+                <label class="custom-check">
+                    <input type="checkbox" name="interests" value="backend">
+                    <span class="checkmark"></span>
+                    Backend Development
+                </label>
+                <label class="custom-check">
+                    <input type="checkbox" name="interests" value="design">
+                    <span class="checkmark"></span>
+                    UI/UX Design
+                </label>
+            </fieldset>
+
+            <fieldset class="radio-group">
+                <legend>Experience Level</legend>
+                <label class="custom-radio">
+                    <input type="radio" name="level" value="beginner">
+                    <span class="radio-dot"></span>
+                    Beginner
+                </label>
+                <label class="custom-radio">
+                    <input type="radio" name="level" value="intermediate">
+                    <span class="radio-dot"></span>
+                    Intermediate
+                </label>
+                <label class="custom-radio">
+                    <input type="radio" name="level" value="advanced">
+                    <span class="radio-dot"></span>
+                    Advanced
+                </label>
+            </fieldset>
+
+            <div class="toggle-row">
+                <span>Receive newsletter</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">Create Account</button>
+        </form>
+    </div>
+</body>
+</html>
