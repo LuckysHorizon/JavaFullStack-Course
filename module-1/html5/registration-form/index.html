@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="form-wrapper">
+        <h1>Student Registration</h1>
+        <p class="subtitle">Fill out the form below to enroll in your chosen course.</p>
+
+        <form action="#" method="post" novalidate>
+            <!-- Personal Information -->
+            <fieldset>
+                <legend>Personal Information</legend>
+
+                <div class="form-group">
+                    <label for="fullname">Full Name <span class="req">*</span></label>
+                    <input type="text" id="fullname" name="fullname" placeholder="e.g. Priya Sharma" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address <span class="req">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="priya@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number <span class="req">*</span></label>
+                    <input type="tel" id="phone" name="phone" placeholder="9876543210"
+                           pattern="[0-9]{10}" title="Enter a 10-digit phone number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Date of Birth <span class="req">*</span></label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Gender <span class="req">*</span></label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="gender" value="male" required> Male</label>
+                        <label><input type="radio" name="gender" value="female"> Female</label>
+                        <label><input type="radio" name="gender" value="other"> Other</label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Academic Information -->
+            <fieldset>
+                <legend>Academic Information</legend>
+
+                <div class="form-group">
+                    <label for="course">Select Course <span class="req">*</span></label>
+                    <select id="course" name="course" required>
+                        <option value="" disabled selected>-- Choose a course --</option>
+                        <option value="java-fullstack">Java Full Stack Development</option>
+                        <option value="data-science">Data Science & Analytics</option>
+                        <option value="cloud-devops">Cloud & DevOps Engineering</option>
+                        <option value="cybersecurity">Cybersecurity Essentials</option>
+                        <option value="ai-ml">AI & Machine Learning</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="start-date">Preferred Start Date</label>
+                    <input type="date" id="start-date" name="start-date">
+                </div>
+            </fieldset>
+
+            <!-- Additional Info -->
+            <fieldset>
+                <legend>Additional Information</legend>
+
+                <div class="form-group">
+                    <label for="notes">Additional Notes</label>
+                    <textarea id="notes" name="notes" rows="4"
+                              placeholder="Any special requirements or questions..."></textarea>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" name="terms" required>
+                        I agree to the <a href="#">Terms &amp; Conditions</a> <span class="req">*</span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
