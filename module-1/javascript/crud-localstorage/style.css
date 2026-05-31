@@ -1,0 +1,223 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+header h1 {
+  color: #2c3e50;
+  font-size: 1.8rem;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form Panel */
+.form-panel {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  position: sticky;
+  top: 20px;
+}
+
+.form-panel h2 {
+  color: #34495e;
+  margin-bottom: 18px;
+  font-size: 1.2rem;
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 600;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: #3498db;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex: 1;
+}
+
+.btn.primary {
+  background: #3498db;
+  color: #fff;
+}
+.btn.primary:hover { background: #2980b9; }
+
+.btn.secondary {
+  background: #95a5a6;
+  color: #fff;
+}
+.btn.secondary:hover { background: #7f8c8d; }
+
+/* List Panel */
+.list-panel {
+  min-height: 300px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.toolbar input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.toolbar input:focus { border-color: #3498db; }
+
+.toolbar select {
+  padding: 10px 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  background: #fff;
+}
+
+.contact-list {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.contact-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.contact-info h3 {
+  color: #2c3e50;
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+}
+
+.contact-info p {
+  color: #777;
+  font-size: 0.85rem;
+  margin-bottom: 2px;
+}
+
+.contact-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-top: 6px;
+}
+
+.badge-friend { background: #dff9fb; color: #00b894; }
+.badge-work { background: #ffeaa7; color: #d68910; }
+.badge-family { background: #fab1a0; color: #d63031; }
+
+.contact-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.contact-actions button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: background 0.2s;
+}
+
+.edit-btn {
+  background: #ebf5fb;
+  color: #2980b9;
+}
+.edit-btn:hover { background: #d4e6f1; }
+
+.delete-btn {
+  background: #fef0ef;
+  color: #e74c3c;
+}
+.delete-btn:hover { background: #fadbd8; }
+
+.empty-msg {
+  text-align: center;
+  color: #aaa;
+  padding: 40px;
+  font-size: 0.95rem;
+}

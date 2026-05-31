@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Contact Manager</h1>
+    </header>
+
+    <div class="main-content">
+      <aside class="form-panel">
+        <h2 id="formTitle">Add Contact</h2>
+        <form id="contactForm">
+          <div class="field">
+            <label for="nameInput">Name</label>
+            <input type="text" id="nameInput" placeholder="Full name" required>
+          </div>
+          <div class="field">
+            <label for="emailInput">Email</label>
+            <input type="email" id="emailInput" placeholder="email@example.com" required>
+          </div>
+          <div class="field">
+            <label for="phoneInput">Phone</label>
+            <input type="tel" id="phoneInput" placeholder="Phone number" required>
+          </div>
+          <div class="field">
+            <label for="categorySelect">Category</label>
+            <select id="categorySelect">
+              <option value="friend">Friend</option>
+              <option value="work">Work</option>
+              <option value="family">Family</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn primary" id="submitBtn">Add Contact</button>
+            <button type="button" class="btn secondary" id="cancelEditBtn" hidden>Cancel</button>
+          </div>
+        </form>
+      </aside>
+
+      <main class="list-panel">
+        <div class="toolbar">
+          <input type="text" id="searchInput" placeholder="Search contacts...">
+          <select id="filterCategory">
+            <option value="">All Categories</option>
+            <option value="friend">Friends</option>
+            <option value="work">Work</option>
+            <option value="family">Family</option>
+          </select>
+        </div>
+        <div id="contactList" class="contact-list"></div>
+        <p id="contactCount" class="contact-count"></p>
+      </main>
+    </div>
+  </div>
+  <script src="crud.js"></script>
+</body>
+</html>
