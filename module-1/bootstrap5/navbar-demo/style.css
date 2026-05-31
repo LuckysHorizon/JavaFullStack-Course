@@ -1,0 +1,14 @@
+/* Account for fixed-top navbar */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+}
+
+body {
+    padding-top: 56px;
+}
+
+/* Inline navbar examples */
+#variations .navbar {
+    position: relative !important;
+}
