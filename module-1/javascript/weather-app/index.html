@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Weather App</h1>
+    <div class="search-box">
+      <input type="text" id="cityInput" placeholder="Enter city name..." autofocus>
+      <button id="searchBtn">Search</button>
+    </div>
+    <div id="loading" class="loading hidden">
+      <div class="spinner"></div>
+      <p>Fetching weather data...</p>
+    </div>
+    <div id="error" class="error hidden"></div>
+    <div id="weatherCard" class="weather-card hidden">
+      <div class="weather-header">
+        <h2 id="cityName"></h2>
+        <img id="weatherIcon" alt="weather icon">
+      </div>
+      <p id="weatherDesc" class="weather-desc"></p>
+      <div class="temp-display">
+        <span id="temperature" class="temp"></span>
+      </div>
+      <div class="weather-details">
+        <div class="detail">
+          <span class="label">Humidity</span>
+          <span id="humidity" class="value"></span>
+        </div>
+        <div class="detail">
+          <span class="label">Wind</span>
+          <span id="wind" class="value"></span>
+        </div>
+        <div class="detail">
+          <span class="label">Feels Like</span>
+          <span id="feelsLike" class="value"></span>
+        </div>
+        <div class="detail">
+          <span class="label">Visibility</span>
+          <span id="visibility" class="value"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
