@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Exercises</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>DOM Manipulation Exercises</h1>
+
+    <!-- Section 1: Dynamic Element Creation -->
+    <section class="exercise-section">
+      <h2>1. Dynamic Element Creation</h2>
+      <p>Click the button to add paragraphs with random background colors.</p>
+      <button id="addParagraph" class="action-btn">Add Paragraph</button>
+      <button id="clearParagraphs" class="action-btn secondary">Clear All</button>
+      <div id="paragraphContainer" class="demo-area"></div>
+    </section>
+
+    <!-- Section 2: Style Manipulation -->
+    <section class="exercise-section">
+      <h2>2. Style Manipulation</h2>
+      <p>Use the controls to change the target element's styling.</p>
+      <div class="controls">
+        <label>Font Size:
+          <input type="range" id="fontSize" min="12" max="48" value="16">
+          <span id="fontSizeVal">16px</span>
+        </label>
+        <label>Text Color:
+          <input type="color" id="textColor" value="#333333">
+        </label>
+        <label>Background:
+          <input type="color" id="bgColor" value="#ffffff">
+        </label>
+        <label>Font Weight:
+          <select id="fontWeight">
+            <option value="normal">Normal</option>
+            <option value="bold">Bold</option>
+            <option value="lighter">Lighter</option>
+          </select>
+        </label>
+      </div>
+      <div id="styleTarget" class="demo-area target-box">
+        This is the target element. Use the controls above to change my appearance!
+      </div>
+    </section>
+
+    <!-- Section 3: Event Delegation -->
+    <section class="exercise-section">
+      <h2>3. Event Delegation</h2>
+      <p>Add items to the list. Click any item to highlight it, or click  to remove. Uses a single parent listener.</p>
+      <div class="controls">
+        <input type="text" id="listItemInput" placeholder="Enter item text...">
+        <button id="addListItem" class="action-btn">Add Item</button>
+      </div>
+      <ul id="delegationList" class="demo-area item-list"></ul>
+    </section>
+
+    <!-- Section 4: DOM Traversal -->
+    <section class="exercise-section">
+      <h2>4. DOM Traversal</h2>
+      <p>Click on any element in the nested structure below to see its parent, children, and siblings.</p>
+      <div id="traversalTree" class="demo-area tree">
+        <div class="node" data-label="Grandparent">
+          <div class="node" data-label="Parent A">
+            <div class="node" data-label="Child A1"></div>
+            <div class="node" data-label="Child A2"></div>
+            <div class="node" data-label="Child A3"></div>
+          </div>
+          <div class="node" data-label="Parent B">
+            <div class="node" data-label="Child B1"></div>
+            <div class="node" data-label="Child B2"></div>
+          </div>
+        </div>
+      </div>
+      <div id="traversalOutput" class="output-box">Click a node above to see traversal info.</div>
+    </section>
+
+    <!-- Section 5: Attribute Manipulation -->
+    <section class="exercise-section">
+      <h2>5. Attribute Manipulation</h2>
+      <p>Dynamically change attributes of the elements below.</p>
+      <div class="controls">
+        <button id="changeImage" class="action-btn">Change Image</button>
+        <button id="changeLink" class="action-btn">Change Link</button>
+        <button id="toggleClass" class="action-btn">Toggle Highlight</button>
+      </div>
+      <div class="demo-area attr-demo">
+        <img id="attrImage" src="https://picsum.photos/seed/1/200/120" alt="Sample image" width="200">
+        <a id="attrLink" href="https://developer.mozilla.org" target="_blank">MDN Web Docs</a>
+        <div id="attrBox" class="attr-box">Toggleable Box</div>
+      </div>
+    </section>
+  </div>
+  <script src="dom.js"></script>
+</body>
+</html>

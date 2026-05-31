@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array Methods Showcase</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1> Array Methods Showcase</h1>
+    <p class="intro">Explore JavaScript array methods with interactive examples using a student dataset.</p>
+
+    <div class="dataset-preview">
+      <h3> Dataset Preview</h3>
+      <div id="datasetOutput" class="output-area"></div>
+    </div>
+
+    <div class="methods-grid">
+      <div class="method-card">
+        <h3>map()</h3>
+        <p>Transform student objects into display strings</p>
+        <code>students.map(s => ${s.name} (GPA: ${s.gpa}))</code>
+        <button class="run-btn" data-method="map">Run</button>
+        <div class="result" id="mapResult"></div>
+      </div>
+
+      <div class="method-card">
+        <h3>filter()</h3>
+        <p>Find students with GPA greater than 3.5</p>
+        <code>students.filter(s => s.gpa > 3.5)</code>
+        <button class="run-btn" data-method="filter">Run</button>
+        <div class="result" id="filterResult"></div>
+      </div>
+
+      <div class="method-card">
+        <h3>reduce()</h3>
+        <p>Calculate the average GPA across all students</p>
+        <code>students.reduce((sum, s) => sum + s.gpa, 0) / students.length</code>
+        <button class="run-btn" data-method="reduce">Run</button>
+        <div class="result" id="reduceResult"></div>
+      </div>
+
+      <div class="method-card">
+        <h3>find()</h3>
+        <p>Find a specific student by name</p>
+        <code>students.find(s => s.name === 'Priya Sharma')</code>
+        <button class="run-btn" data-method="find">Run</button>
+        <div class="result" id="findResult"></div>
+      </div>
+
+      <div class="method-card">
+        <h3>some() / every()</h3>
+        <p>Check conditions across the dataset</p>
+        <code>some(s => s.gpa === 4.0) | every(s => s.age >= 18)</code>
+        <button class="run-btn" data-method="someEvery">Run</button>
+        <div class="result" id="someEveryResult"></div>
+      </div>
+
+      <div class="method-card">
+        <h3>sort()</h3>
+        <p>Sort students by GPA (descending)</p>
+        <code>[...students].sort((a, b) => b.gpa - a.gpa)</code>
+        <button class="run-btn" data-method="sort">Run</button>
+        <div class="result" id="sortResult"></div>
+      </div>
+
+      <div class="method-card wide">
+        <h3>Method Chaining </h3>
+        <p>Chain multiple methods: filter honor roll students, sort by GPA, and extract names</p>
+        <code>students.filter(s => s.gpa >= 3.5).sort((a,b) => b.gpa - a.gpa).map(s => s.name)</code>
+        <button class="run-btn" data-method="chain">Run</button>
+        <div class="result" id="chainResult"></div>
+      </div>
+    </div>
+  </div>
+  <script src="arrays.js"></script>
+</body>
+</html>
